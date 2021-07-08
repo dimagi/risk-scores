@@ -11,7 +11,7 @@ For example, for the classification tasks, a simple metric, such as accuracy, is
 To avoid the previously mentioned issue with accuracy as a metric, data scientists often use the AUC (area under curve), which is the two-dimensional area underneath the receiver operating characteristic (ROC) curve, as an evaluation metric. The ROC curve plots true positive rate against false positive rate in order to visualize the performance of a model in different scenarios. Therefore, we use AUC score in the code in this repository. 
 
 ## Steps to use 
-1.(Recommended) Create a virtual enviroment and activate it 
+1. (Recommended) Create a virtual enviroment and activate it
 2. Use the *requirements.txt* file to download all of the required libraries to run the script.
 3. Fill the variables in the *settings.py* file with the appropiate values, based on the previous step.
 4. You can train a binary Random Forest Classifier by running: 
