@@ -1,4 +1,6 @@
-The repository provides example tooling for developing a risk score model, including the use of appropriate metrics for evaluation and examples of how to tune a model appropriately. The example is meant to illustrate the process as the details of any project will require some customization in approach.
+# RISK SCORES GENERATION
+
+This repository provides example tooling for developing a risk score model, including the use of appropriate metrics for evaluation and examples of how to tune a model appropriately. The example is meant to illustrate the process as the details of any project will require some customization in approach.
 
 The primary aim of using a machine learning model in public health is to tell us where to focus human efforts or resources and maximise our impact. This contrasts with a traditional economist or epidemiologist approach, which strives to establish causality and determine the exact factors that are responsible for the outcome.
 
@@ -10,7 +12,7 @@ For example, for the classification tasks, a simple metric, such as accuracy, is
 
 To avoid the previously mentioned issue with accuracy as a metric, data scientists often use the AUC (area under curve), which is the two-dimensional area underneath the receiver operating characteristic (ROC) curve, as an evaluation metric. The ROC curve plots true positive rate against false positive rate in order to visualize the performance of a model in different scenarios. Therefore, we use AUC score in the code in this repository. 
 
-## Steps to use 
+## Usage
 1. (Recommended) Create a virtual enviroment and activate it
 2. Use the *requirements.txt* file to download all of the required libraries to run the script.
 3. Fill the variables in the *settings.py* file with the appropiate values, based on the previous step.
@@ -18,3 +20,8 @@ To avoid the previously mentioned issue with accuracy as a metric, data scientis
 ```bash
 python3 build_model.py
 ```
+5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API) by running :
+```bash
+python3 update_risk_scores.py
+```
+
