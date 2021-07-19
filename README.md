@@ -12,7 +12,15 @@ For example, for the classification tasks, a simple metric, such as accuracy, is
 
 To avoid the previously mentioned issue with accuracy as a metric, data scientists often use the AUC (area under curve), which is the two-dimensional area underneath the receiver operating characteristic (ROC) curve, as an evaluation metric. The ROC curve plots true positive rate against false positive rate in order to visualize the performance of a model in different scenarios. Therefore, we use AUC score in the code in this repository. 
 
-( Desc around the data and path variables)
+## Dataset Loading and Saving Models
+The dataset used for this analysis is the form submission data from CommCare applications. Each row in the dataset corresponds to a case and consists of all the historical form submission data for the particular case. In *build_model.py*, the dataset is loaded from a parquet file (you can similarly load a csv or sql file as well). 
+
+The final trained model can be saved as pickle file at a desired location by setting the PATH variables in the *settings.py* file. You can then load your saved model, generate risk scores on your own dataset (formatted as one row per case) and save the risk scores as a csv file in *build_model.py* file.
+
+## Submit Data to CommCare
+Following the example script from this [repository](https://github.com/dimagi/submission_api_example), you can submit the risk scores to update the case properties in CommCare using the *submit_data.py* file. 
+
+(If you would like to update existing cases, you can set the server_modified_on attribute for existing cases.)
 
 ## Usage
 1. (Recommended) Create a virtual enviroment and activate it
@@ -26,7 +34,17 @@ pip install -r requirements.txt
 python3 build_model.py
 ```
 5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API) by running :
+
 ```bash
-python3 submit_data.py
+$ export CCHQ_PROJECT_SPACE=my-project-space
+$ export CCHQ_CASE_TYPE=person
+$ export CCHQ_USERNAME=user@example.com
+$ export CCHQ_PASSWORD=MijByG_se3EcKr.t
+$ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
+$ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
+```
+
+```bash
+python3 submit_data.py sample_data.csv
 ```
 
