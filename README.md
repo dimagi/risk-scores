@@ -27,6 +27,6 @@ python3 build_model.py
 ```
 5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API) by running :
 ```bash
-python3 update_risk_scores.py
+python3 submit_data.py
 ```
 

@@ -68,6 +68,10 @@ def main():
     ax.plot(fpr, tpr, color='b',label=r'Test ROC',lw=2, alpha=.8)
     plt.show() #put better graph and save it 
     
+    # load the model from disk, run on cases and save the risk scores to a csv file 
+    #loaded_model = pickle.load(open(filename, 'rb'))
+    #result = loaded_model.predict_proba(features)
+    #pd.DataFrame(result).to_csv("path/to/file.csv")
 
 if __name__ == '__main__':
     main()
