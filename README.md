@@ -24,14 +24,18 @@ Following the example script from this [repository](https://github.com/dimagi/su
 
 ## Usage
 1. (Recommended) Create a virtual enviroment and activate it
-2. Use the *requirements.txt* file to download all of the required libraries to run the script. cd to to the directory where the *requirements.txt* is located
 ```bash
-pip install -r requirements.txt
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+3. Use the *requirements.txt* file to download all of the required libraries to run the script. cd to to the directory where the *requirements.txt* is located
+```bash
+$ pip install -r requirements.txt
 ```
 4. Fill the variables in the *settings.py* file with the appropiate values, based on the previous step.
 5. You can train a binary Random Forest Classifier by running: 
 ```bash
-python3 build_model.py
+$ python3 build_model.py
 ```
 5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API) by running :
 
@@ -45,6 +49,6 @@ $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 ```
 
 ```bash
-python3 submit_data.py sample_data.csv
+$ python3 submit_data.py sample_data.csv
 ```
 
