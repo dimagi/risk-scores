@@ -13,7 +13,7 @@ For example, for the classification tasks, a simple metric, such as accuracy, is
 To avoid the previously mentioned issue with accuracy as a metric, data scientists often use the AUC (area under curve), which is the two-dimensional area underneath the receiver operating characteristic (ROC) curve, as an evaluation metric. The ROC curve plots true positive rate against false positive rate in order to visualize the performance of a model in different scenarios. Therefore, we use AUC score in the code in this repository. 
 
 ## Dataset Loading and Saving Models
-The dataset used for this analysis is the form submission data from CommCare applications. Each row in the dataset corresponds to a case and consists of all the historical form submission data for the particular case. In *build_model.py*, the dataset is loaded from a parquet file (you can similarly load a csv or sql file as well). 
+This repository is specifically designed to expand the greater CommCare platform to use Machine Learning to generate a model to produce risk scores. The starting input data is assumed to be transactional (form-level) data. This data then needs to be aggregated down to a single row per 'case' about which we are creating the risk scores. The row will consists of all the historical form submission data for that particular case. In *build_model.py*, the dataset is loaded from a parquet file (you can similarly load a csv or sql file or pull from a database as well). 
 
 The final trained model can be saved as pickle file at a desired location by setting the PATH variables in the *settings.py* file. You can then load your saved model, generate risk scores on your own dataset (formatted as one row per case) and save the risk scores as a csv file in *build_model.py* file.
 
@@ -51,4 +51,3 @@ $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 ```bash
 $ python3 submit_data.py sample_data.csv
 ```
-
