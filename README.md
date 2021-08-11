@@ -1,9 +1,4 @@
 # RISK SCORES GENERATION
-
-This repository provides example tooling for developing a risk score model, including the use of appropriate metrics for evaluation and examples of how to tune a model appropriately. The example is meant to illustrate the process as the details of any project will require some customization in approach.
-
-The primary aim of using a machine learning model in public health is to tell us where to focus human efforts or resources and maximise our impact. This contrasts with a traditional economist or epidemiologist approach, which strives to establish causality and determine the exact factors that are responsible for the outcome.
-
 Machine learning-based resource allocation allows us to identify clients or Front Line Workers (FLWs) who are at the highest risk for a particular (e.g., malnourishment in children) outcome and direct appropriate attention towards them to attempt to improve the outcome. For example, a predictive model that identifies high-risk pregnancies would allow an organization to intervene in due time, such as by focusing additional resources on the pregnant woman to ensure a safe pregnancy.
 
 When applying machine learning algorthims to public health datasets that were collected in the field using a mobile health tool such as CommCare, DHIS2 we need to keep in mind that it is likely that the dataset is very noisy and highly imbalaced. Therefore when evaluating the performance of such algorthims we should carefully choose an appropriate metric. 
@@ -51,3 +46,22 @@ $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 ```bash
 $ python3 submit_data.py sample_data.csv
 ```
+
+##Generating Risk Scores for a Case 
+1. After training your random forest model, you can save your final model on your device or working environment. 
+```bash
+filename = settings.MODEL_PATH
+pickle.dump(rf, open(filename, 'wb'))
+print('Model saved at {}'.format(filename))
+```
+2. You can then fetch the cases you want to generate risk scores for from the Commcare HQ using the [Data Export Tool](https://confluence.dimagi.com/display/commcarepublic/CommCare+Data+Export+Tool). You can save the case data in a csv format or directly into sql tables. 
+
+3. Once you have exported the case and form data from CommCare HQ. You can transform the data to collate all form properties and historical data to create a clean and easy-to-use data. Sample Python code for data transformations has been provided in the preprocess_data.py script. 
+4. Once, the data has been tranformed, you can load your saved model and generate risk scores for the cases. These risk scores can be output to the terminal or saved into a csv for ease of use. 
+```bash
+# load the model from disk, run on cases and save the risk scores to a csv file 
+loaded_model = pickle.load(open(filename, 'rb'))
+result = loaded_model.predict_proba(features)
+pd.DataFrame(result).to_csv("path/to/file.csv")
+```
+6. Once, the risk scores for each case have been generated and saved into a file, you can submit the scores via the submit_data.py script to update the case properties on CommCare HQ. 
