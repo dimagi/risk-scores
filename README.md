@@ -49,7 +49,7 @@ $ python3 submit_data.py sample_data.csv
 
 ##Generating Risk Scores for a Case 
 1. After training your random forest model, you can save your final model on your device or working environment. 
-```bash
+```python
 filename = settings.MODEL_PATH
 pickle.dump(rf, open(filename, 'wb'))
 print('Model saved at {}'.format(filename))
@@ -58,10 +58,22 @@ print('Model saved at {}'.format(filename))
 
 3. Once you have exported the case and form data from CommCare HQ. You can transform the data to collate all form properties and historical data to create a clean and easy-to-use data. Sample Python code for data transformations has been provided in the preprocess_data.py script. 
 4. Once, the data has been tranformed, you can load your saved model and generate risk scores for the cases. These risk scores can be output to the terminal or saved into a csv for ease of use. 
-```bash
+```python
 # load the model from disk, run on cases and save the risk scores to a csv file 
 loaded_model = pickle.load(open(filename, 'rb'))
 result = loaded_model.predict_proba(features)
 pd.DataFrame(result).to_csv("path/to/file.csv")
 ```
 6. Once, the risk scores for each case have been generated and saved into a file, you can submit the scores via the submit_data.py script to update the case properties on CommCare HQ. 
+```bash
+$ export CCHQ_PROJECT_SPACE=my-project-space
+$ export CCHQ_CASE_TYPE=person
+$ export CCHQ_USERNAME=user@example.com
+$ export CCHQ_PASSWORD=MijByG_se3EcKr.t
+$ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
+$ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
+```
+
+```bash
+$ python3 submit_data.py sample_result.csv
+```
