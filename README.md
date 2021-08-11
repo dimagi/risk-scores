@@ -17,36 +17,6 @@ Following the example script from this [repository](https://github.com/dimagi/su
 
 (If you would like to update existing cases, you can set the server_modified_on attribute for existing cases.)
 
-## Usage
-1. (Recommended) Create a virtual enviroment and activate it
-```bash
-$ python3 -m venv venv
-$ source venv/bin/activate
-```
-3. Use the *requirements.txt* file to download all of the required libraries to run the script. cd to to the directory where the *requirements.txt* is located
-```bash
-$ pip install -r requirements.txt
-```
-4. Fill the variables in the *settings.py* file with the appropiate values, based on the previous step.
-5. You can train a binary Random Forest Classifier by running: 
-```bash
-$ python3 build_model.py
-```
-5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API) by running :
-
-```bash
-$ export CCHQ_PROJECT_SPACE=my-project-space
-$ export CCHQ_CASE_TYPE=person
-$ export CCHQ_USERNAME=user@example.com
-$ export CCHQ_PASSWORD=MijByG_se3EcKr.t
-$ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
-$ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
-```
-
-```bash
-$ python3 submit_data.py sample_data.csv
-```
-
 ## Generating Risk Scores for a Case 
 1. After training your random forest model, you can save your final model on your device or working environment. 
 ```python
@@ -77,3 +47,20 @@ $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 ```bash
 $ python3 submit_data.py sample_result.csv
 ```
+
+## Usage
+1. (Recommended) Create a virtual enviroment and activate it
+```bash
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+3. Use the *requirements.txt* file to download all of the required libraries to run the script. cd to to the directory where the *requirements.txt* is located
+```bash
+$ pip install -r requirements.txt
+```
+4. Fill the variables in the *settings.py* file with the appropiate values, based on the previous step.
+5. You can train a binary Random Forest Classifier by running: 
+```bash
+$ python3 build_model.py
+```
+5. You can generate risk scores for a case and update the case properties on CommCare HQ via the [Submission API](https://confluence.dimagi.com/display/commcarepublic/Submission+API)
