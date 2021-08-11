@@ -47,7 +47,7 @@ $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 $ python3 submit_data.py sample_data.csv
 ```
 
-##Generating Risk Scores for a Case 
+## Generating Risk Scores for a Case 
 1. After training your random forest model, you can save your final model on your device or working environment. 
 ```python
 filename = settings.MODEL_PATH
