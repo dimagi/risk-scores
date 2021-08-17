@@ -25,6 +25,18 @@ pickle.dump(rf, open(filename, 'wb'))
 print('Model saved at {}'.format(filename))
 ```
 2. You can then fetch the cases you want to generate risk scores for from the Commcare HQ using the [Data Export Tool](https://confluence.dimagi.com/display/commcarepublic/CommCare+Data+Export+Tool). You can save the case data in a csv format or directly into sql tables. 
+```bash
+commcare-export \
+    --verbose \
+    --commcare-hq https://www.commcarehq.org \
+    --username "username"\
+    --project 'project_name'\
+    --auth-mode apikey \
+    --password  "apikey"\
+    --query "det_config file"\
+    --batch-size=1000 \
+    --output-format csv \
+```
 
 3. Once you have exported the case and form data from CommCare HQ. You can transform the data to collate all form properties and historical data to create a clean and easy-to-use data. Sample Python code for data transformations has been provided in the preprocess_data.py script. 
 4. Once, the data has been tranformed, you can load your saved model and generate risk scores for the cases. These risk scores can be output to the terminal or saved into a csv for ease of use. 
